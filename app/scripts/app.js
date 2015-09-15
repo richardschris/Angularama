@@ -31,6 +31,11 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/schedule', {
+        templateUrl: 'views/schedule.html',
+        controller: 'ScheduleCtrl',
+        controllerAs: 'schedule'
+      })
       .otherwise({
         redirectTo: '/'
       });
