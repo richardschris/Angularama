@@ -32,9 +32,14 @@ angular
                 controllerAs: 'about'
             })
             .when('/schedule', {
-                templateUrl: 'views/schedule.html',
-                controller: 'ScheduleCtrl',
+                templateUrl: 'views/week.html',
+                controller: 'WeekScheduleCtrl',
                 controllerAs: 'schedule'
+            })
+            .when('/team', {
+              templateUrl: 'views/team.html',
+              controller: 'TeamCtrl',
+              controllerAs: 'team'
             })
             .otherwise({
                 redirectTo: '/'

@@ -15,7 +15,7 @@ def week_sched(week_id):
         jdata = json.loads(line)
         if int(jdata['gameWeek']) <= week_id:
             if int(jdata['gameWeek']) == week_id:
-                context[jdata['gameId']] = {
+                context[int(jdata['gameId'])] = {
                     'gameDate': jdata['gameDate'],
                     'awayTeam': jdata['awayTeam'],
                     'homeTeam': jdata['homeTeam'],
@@ -31,10 +31,11 @@ def team_sched(team_id):
     fi = open('nflschedulef.json', 'r')
 
     context = {}
-    for line in non_blanklines(fi):
+
+    for line in nonblank_lines(fi):
         jdata = json.loads(line)
         if jdata['awayTeam'] == team_id or jdata['homeTeam'] == team_id:
-            context[jdata['gameId']] = {
+            context[int(jdata['gameId'])] = {
                 'gameDate': jdata['gameDate'],
                 'awayTeam': jdata['awayTeam'],
                 'homeTeam': jdata['homeTeam'],

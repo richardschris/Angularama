@@ -8,11 +8,11 @@
  * Controller of the angularamaApp
  */
 angular.module('angularamaApp')
-    .controller('ScheduleCtrl', function(weekSchedule) {
+    .controller('WeekScheduleCtrl', function(weekSchedule) {
         this.getSchedule = function(week) {
             return weekSchedule.getWeek(week);
         };
-        
+
         this.defaultWeek = 1;
         this.sched = this.getSchedule(this.defaultWeek);
 

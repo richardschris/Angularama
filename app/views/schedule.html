@@ -1,8 +1,0 @@
-<p>This is the schedule view.</p>
-<p><div ng-repeat="week in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]"><a href ng-click="schedule.sched = schedule.getSchedule(week)"> {{week}} </a></div></p>
-<div ng-repeat="game in schedule.sched.content">
-<p>{{game["awayTeam"]}}<img ng-src="images/helmets/{{game['awayTeam']}}.gif">
-     @
-     {{game["homeTeam"]}}<img ng-src="images/helmets/{{game['homeTeam']}}.gif">
-      - {{game["gameDate"]| date}}</p>
-</div>
