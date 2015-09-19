@@ -1,0 +1,10 @@
+<p>This is the team view.</p>
+<ul class="list-inline"><li ng-repeat="teamabv in team.teams"><a href
+     ng-click="team.sched = team.getSchedule(teamabv)"> {{teamabv}}
+</a></li></p>
+<div ng-repeat="game in team.sched.content" class="panel panel-default">
+    {{game["awayTeam"]}}
+    <img ng-src="images/helmets/{{game['awayTeam']}}.gif">
+    @ {{game["homeTeam"]}}<img ng-src="images/helmets/{{game['homeTeam']}}.gif">
+    - {{game["gameDate"]| date}}</p>
+</div>
