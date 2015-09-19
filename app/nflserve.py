@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
 import json
+from flask.ext.cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/schedule/week/<int:week_id>', methods=['GET'])
 def week_sched(week_id):
@@ -17,8 +19,28 @@ def week_sched(week_id):
                     'gameDate': jdata['gameDate'],
                     'awayTeam': jdata['awayTeam'],
                     'homeTeam': jdata['homeTeam'],
-                    'gameTimeET': jdata['gameTimeET']
+                    'gameTimeET': jdata['gameTimeET'],
+                    'tvStation': jdata['tvStation']
                 }
+
+    return jsonify(context)
+
+
+@app.route('/schedule/team/<string:team_id>', methods=['GET'])
+def team_sched(team_id):
+    fi = open('nflschedulef.json', 'r')
+
+    context = {}
+    for line in non_blanklines(fi):
+        jdata = json.loads(line)
+        if jdata['awayTeam'] == team_id or jdata['homeTeam'] == team_id:
+            context[jdata['gameId']] = {
+                'gameDate': jdata['gameDate'],
+                'awayTeam': jdata['awayTeam'],
+                'homeTeam': jdata['homeTeam'],
+                'gameTimeET': jdata['gameTimeET'],
+                'tvStation': jdata['tvStation']
+            }
 
     return jsonify(context)
 
