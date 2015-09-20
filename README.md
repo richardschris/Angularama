@@ -6,7 +6,7 @@ An NFL schedule browser.
 
 Run `grunt` for building and `grunt serve` for preview.
 
-You need to also run app/nflserve.py for the Flask-based REST service.
+You need to also run app/nflserve.py for the Flask-based REST service. You need flask-cors installed, as well.
 
 ## Testing
 
