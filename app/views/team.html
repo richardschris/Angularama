@@ -3,8 +3,10 @@
      ng-click="team.sched = team.getSchedule(teamabv)"> {{teamabv}}
 </a></li></p>
 <div ng-repeat="game in team.sched.content" class="panel panel-default">
-    {{game["awayTeam"]}}
-    <img ng-src="images/helmets/{{game['awayTeam']}}.gif">
-    @ {{game["homeTeam"]}}<img ng-src="images/helmets/{{game['homeTeam']}}.gif">
+    <a ng-click="team.teamTransition(game['awayTeam'])"  href="#/team">
+        {{game["awayTeam"]}}
+    <img ng-src="images/helmets/{{game['awayTeam']}}.gif"></a>
+    @ <a ng-click="team.teamTransition(game['homeTeam'])"  href="#/team">
+        {{game["homeTeam"]}}<img ng-src="images/helmets/{{game['homeTeam']}}.gif"></a>
     - {{game["gameDate"]| date}}</p>
 </div>

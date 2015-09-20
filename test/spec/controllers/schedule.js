@@ -14,10 +14,11 @@ describe('Controller: ScheduleCtrl', function () {
     ScheduleCtrl = $controller('ScheduleCtrl', {
       $scope: scope
       // place here mocked dependencies
+      
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
+  it('should attach a schedule object to the scope', function () {
     expect(ScheduleCtrl.awesomeThings.length).toBe(3);
   });
 });

@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-import json
+import json, sqlite3
 from flask.ext.cors import CORS
 
 app = Flask(__name__)
@@ -10,18 +10,30 @@ def week_sched(week_id):
     fi = open('nflschedulef.json', 'r')
 
     context = {}
+    connection = sqlite3.connect('nflschedule.db')
+    cursor = connection.cursor()
 
-    for line in nonblank_lines(fi):
-        jdata = json.loads(line)
-        if int(jdata['gameWeek']) <= week_id:
-            if int(jdata['gameWeek']) == week_id:
-                context[int(jdata['gameId'])] = {
-                    'gameDate': jdata['gameDate'],
-                    'awayTeam': jdata['awayTeam'],
-                    'homeTeam': jdata['homeTeam'],
-                    'gameTimeET': jdata['gameTimeET'],
-                    'tvStation': jdata['tvStation']
-                }
+    """
+    Schema
+    	0: gameid INTEGER PRIMARY KEY,
+    	1: away_team TEXT,
+    	2: home_team TEXT,
+    	3: game_date TEXT,
+    	4: game_week INTEGER,
+    	5: game_time_et TEXT,
+    	6: tv_station TEXT
+    """
+    for row in cursor.execute('SELECT * FROM game WHERE game_week=?', [week_id]):
+        context[row[0]] = {
+                        'gameDate': row[3],
+                        'awayTeam': row[1],
+                        'homeTeam': row[2],
+                        'gameWeek': row[4],
+                        'gameTimeET': row[5],
+                        'tvStation': row[6]
+                    }
+
+    connection.close()
 
     return jsonify(context)
 
@@ -32,17 +44,30 @@ def team_sched(team_id):
 
     context = {}
 
-    for line in nonblank_lines(fi):
-        jdata = json.loads(line)
-        if jdata['awayTeam'] == team_id or jdata['homeTeam'] == team_id:
-            context[int(jdata['gameId'])] = {
-                'gameDate': jdata['gameDate'],
-                'awayTeam': jdata['awayTeam'],
-                'homeTeam': jdata['homeTeam'],
-                'gameTimeET': jdata['gameTimeET'],
-                'tvStation': jdata['tvStation']
-            }
+    connection = sqlite3.connect('nflschedule.db')
+    cursor = connection.cursor()
 
+    """
+    Schema
+    	0: gameid INTEGER PRIMARY KEY,
+    	1: away_team TEXT,
+    	2: home_team TEXT,
+    	3: game_date TEXT,
+    	4: game_week INTEGER,
+    	5: game_time_et TEXT,
+    	6: tv_station TEXT
+    """
+    for row in cursor.execute('SELECT * FROM game WHERE home_team=:team OR away_team=:team', {'team': team_id}):
+        context[row[0]] = {
+                        'gameDate': row[3],
+                        'awayTeam': row[1],
+                        'homeTeam': row[2],
+                        'gameWeek': row[4],
+                        'gameTimeET': row[5],
+                        'tvStation': row[6]
+                    }
+
+    connection.close()
     return jsonify(context)
 
 

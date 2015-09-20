@@ -4,8 +4,7 @@
      ng-click="schedule.sched = schedule.getSchedule(week)"> {{week}}
 </a></li></p>
 <div ng-repeat="game in schedule.sched.content" class="panel panel-default">
-    {{game["awayTeam"]}}
-    <img ng-src="images/helmets/{{game['awayTeam']}}.gif">
-    @ {{game["homeTeam"]}}<img ng-src="images/helmets/{{game['homeTeam']}}.gif">
+    <a ng-href="#/team" ng-click="schedule.teamTransition(game['awayTeam'])">{{game["awayTeam"]}}    <img ng-src="images/helmets/{{game['awayTeam']}}.gif"></a>
+    @ <a ng-href="#/team" ng-click="schedule.teamTransition(game['homeTeam'])">{{game["homeTeam"]}}<img ng-src="images/helmets/{{game['homeTeam']}}.gif"></a>
     - {{game["gameDate"]| date}}</p>
 </div>

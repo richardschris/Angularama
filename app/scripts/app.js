@@ -44,4 +44,23 @@ angular
             .otherwise({
                 redirectTo: '/'
             });
-;    });
+    })
+    .service('TeamWeek', function() {
+        var week = 1; //default week
+        var team = 'ARI' // go Cards!
+
+        return {
+           getTeam: function () {
+               return team;
+           },
+           setTeam: function(value) {
+               team = value;
+           },
+           getWeek: function() {
+               return week;
+           },
+           setWeek: function(value) {
+               week = value;
+           }
+       };
+    })

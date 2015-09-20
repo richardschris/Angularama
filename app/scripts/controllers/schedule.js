@@ -8,14 +8,15 @@
  * Controller of the angularamaApp
  */
 angular.module('angularamaApp')
-    .controller('WeekScheduleCtrl', function(weekSchedule) {
+    .controller('WeekScheduleCtrl', function(weekSchedule, TeamWeek) {
         this.getSchedule = function(week) {
             return weekSchedule.getWeek(week);
         };
+        this.sched = this.getSchedule(TeamWeek.getWeek());
 
-        this.defaultWeek = 1;
-        this.sched = this.getSchedule(this.defaultWeek);
-
+        this.teamTransition = function(team) {
+            TeamWeek.setTeam(team);
+        }
     })
     .factory('weekSchedule', function($http) {
         var weekSchedInstance = {};
