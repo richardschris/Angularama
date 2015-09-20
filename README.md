@@ -15,6 +15,5 @@ Running `grunt test` will run the unit tests with karma.
 ### TODO
 
 1. Write tests.
-2. Load the data into an SQL server
-3. Add depth charts
-4. Polish UI
+2. Add depth charts
+3. Polish UI
