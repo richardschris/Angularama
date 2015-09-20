@@ -1,10 +1,10 @@
 <p>This is the schedule view.</p>
-<ul class="list-inline"><li ng-repeat="week in
-     [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]"><a href
-     ng-click="schedule.sched = schedule.getSchedule(week)"> {{week}}
+<ul class="list-inline"><li ng-repeat="weekNum in
+     [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]"><a href=""
+     ng-click=" week.weekTransition(weekNum)"> {{weekNum}}
 </a></li></p>
-<div ng-repeat="game in schedule.sched.content" class="panel panel-default">
-    <a ng-href="#/team" ng-click="schedule.teamTransition(game['awayTeam'])">{{game["awayTeam"]}}    <img ng-src="images/helmets/{{game['awayTeam']}}.gif"></a>
-    @ <a ng-href="#/team" ng-click="schedule.teamTransition(game['homeTeam'])">{{game["homeTeam"]}}<img ng-src="images/helmets/{{game['homeTeam']}}.gif"></a>
-    - {{game["gameDate"]| date}}</p>
+<div ng-repeat="game in week.sched.content" class="panel panel-default">
+    <a ng-href="#/team" ng-click="week.teamTransition(game['awayTeam'])">{{game["awayTeam"]}}    <img ng-src="images/helmets/{{game['awayTeam']}}.gif"></a>
+    @ <a ng-href="#/team" ng-click="week.teamTransition(game['homeTeam'])">{{game["homeTeam"]}}<img ng-src="images/helmets/{{game['homeTeam']}}.gif"></a>
+    - {{game["gameDate"]| date}} - {{game["gameTimeET"]}}</p>
 </div>

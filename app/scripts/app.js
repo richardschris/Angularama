@@ -17,7 +17,8 @@ angular
         'ngResource',
         'ngRoute',
         'ngSanitize',
-        'ngTouch'
+        'ngTouch',
+        'FullTeamNameFilter'
     ])
     .config(function($routeProvider, $httpProvider) {
         $routeProvider
@@ -31,10 +32,10 @@ angular
                 controller: 'AboutCtrl',
                 controllerAs: 'about'
             })
-            .when('/schedule', {
+            .when('/week', {
                 templateUrl: 'views/week.html',
                 controller: 'WeekScheduleCtrl',
-                controllerAs: 'schedule'
+                controllerAs: 'week'
             })
             .when('/team', {
               templateUrl: 'views/team.html',
@@ -63,4 +64,21 @@ angular
                week = value;
            }
        };
-    })
+   });
+
+   angular.module('FullTeamNameFilter', [])
+   .filter('TeamName', function() {
+      return function(input) {
+        var teamsAbbrev = ['ARI', 'ATL', 'BAL', 'BUF', 'CAR', 'CHI', 'CIN',
+            'CLE', 'DAL', 'DEN', 'DET', 'GB', 'HOU', 'IND', 'JAC', 'KC',
+            'MIA', 'MIN', 'NE', 'NO', 'NYG', 'NYJ', 'OAK', 'PHI', 'PIT',
+            'SD', 'SEA', 'SF', 'STL', 'TB', 'TEN', 'WAS'];
+
+        var teamsFull = ['Arizona', 'Atlanta', 'Baltimore', 'Buffalo', 'Carolina',
+                'Chicago', 'Cincinnati', 'Cleveland', 'Dallas', 'Denver', 'Detroit', 'Green Bay', 'Houston', 'Indianapolis', 'Jacksonville', 'Kansas City', 'Miami', 'Minnesota', 'New England', 'New Orleans', 'New York Giants', 'New York Jets', 'Oakland', 'Philadelphia',
+                'Pittsburgh', 'San Diego', 'Seattle', 'San Francisco', 'St.                Louis','Tampa Bay', 'Tennessee', 'Washington'];
+
+        input = teamsAbbrev.indexOf(input);
+        return teamsFull[input];
+      }
+   });
