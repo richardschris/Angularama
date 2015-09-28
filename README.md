@@ -14,5 +14,4 @@ Running `grunt test` will run the unit tests with karma.
 
 ### TODO
 
-1. Write tests.
-2. Polish UI
+1. Polish UI
