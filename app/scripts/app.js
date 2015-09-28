@@ -20,7 +20,7 @@ angular
         'ngTouch',
         'FullTeamNameFilter'
     ])
-    .config(function($routeProvider, $httpProvider) {
+    .config(function($routeProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
@@ -48,7 +48,7 @@ angular
     })
     .service('TeamWeek', function() {
         var week = 1; //default week
-        var team = 'ARI' // go Cards!
+        var team = 'ARI'; // go Cards!
 
         return {
            getTeam: function () {
@@ -80,5 +80,5 @@ angular
 
         input = teamsAbbrev.indexOf(input);
         return teamsFull[input];
-      }
+    };
    });

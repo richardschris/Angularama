@@ -22,12 +22,12 @@ angular.module('angularamaApp')
 
         this.weekTransition = function(week) {
             TeamWeek.setWeek(week);
-        }
+        };
 
         this.teamTransition = function(team) {
             TeamWeek.setTeam(team);
             this.sched = this.getSchedule(TeamWeek.getTeam());
-        }
+        };
 }).factory('teamSchedule', function ($http) {
     var teamScheduleInstance = {};
 

@@ -1,24 +1,26 @@
 'use strict';
 
-describe('Controller: ScheduleCtrl', function () {
+describe('Controller: WeekScheduleCtrl', function () {
 
   // load the controller's module
   beforeEach(module('angularamaApp'));
 
-  var ScheduleCtrl,
-    scope;
+  var schedule,
+    httpBackend;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    ScheduleCtrl = $controller('ScheduleCtrl', {
-      $scope: scope
+  beforeEach(inject(function ($controller, $http, $httpBackend) {
+    httpBackend = $httpBackend;
+    httpBackend.when("GET", "http://localhost:5000/schedule/week/1").respond([{hello: 'world'}]);
+
+    schedule = $controller('WeekScheduleCtrl', {
       // place here mocked dependencies
-      
+      $http: $http
     });
   }));
 
-  it('should attach a schedule object to the scope', function () {
-    expect(ScheduleCtrl.awesomeThings.length).toBe(3);
+  it('should get from the REST API', function () {
+    httpBackend.expectGET('http://localhost:5000/schedule/week/1');
+    httpBackend.flush();
   });
 });

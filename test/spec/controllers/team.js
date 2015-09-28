@@ -6,18 +6,27 @@ describe('Controller: TeamCtrl', function () {
   beforeEach(module('angularamaApp'));
 
   var TeamCtrl,
-    scope;
+    scope,
+    httpBackend;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function ($controller, $rootScope, $httpBackend, $http) {
     scope = $rootScope.$new();
+    httpBackend = $httpBackend;
+    httpBackend.when("GET", "http://localhost:5000/schedule/team/ARI").respond([{hello: 'world'}]);
     TeamCtrl = $controller('TeamCtrl', {
-      $scope: scope
+      $scope: scope,
       // place here mocked dependencies
+      $http: $http
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(TeamCtrl.awesomeThings.length).toBe(3);
+    expect(TeamCtrl.teams.length).toBe(32);
+  });
+
+  it('should fetch Arizona schedule', function () {
+    httpBackend.expectGET('http://localhost:5000/schedule/team/ARI');
+    httpBackend.flush();
   });
 });
