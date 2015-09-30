@@ -11,8 +11,3 @@ You need to also run app/nflserve.py for the Flask-based REST service. You need 
 ## Testing
 
 Running `grunt test` will run the unit tests with karma.
-
-### TODO
-
-1. Write tests.
-2. Polish UI

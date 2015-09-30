@@ -20,8 +20,8 @@ describe('Controller: TeamCtrl', function () {
       $http: $http
     });
   }));
-
-  it('should attach a list of awesomeThings to the scope', function () {
+  // we use some syntactic sugar to do this
+  it('should attach a list of teams to the scope', function () {
     expect(TeamCtrl.teams.length).toBe(32);
   });
 

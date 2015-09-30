@@ -1,9 +1,9 @@
-<p>This is the schedule view.</p>
-<ul class="list-inline"><li ng-repeat="weekNum in
+<h1 class="text-center">Schedule by Week</h1>
+<ul class="list-inline text-center"><li ng-repeat="weekNum in
      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]"><a href=""
      ng-click=" week.weekTransition(weekNum)"> {{weekNum}}
 </a></li></p>
-<div ng-repeat="game in week.sched.content" class="panel panel-default">
+<div ng-repeat="game in week.sched.content" class="panel panel-default text-center">
     <a ng-href="#/team" ng-click="week.teamTransition(game['awayTeam'])">{{game["awayTeam"]}}    <img ng-src="images/helmets/{{game['awayTeam']}}.gif"></a>
     @ <a ng-href="#/team" ng-click="week.teamTransition(game['homeTeam'])">{{game["homeTeam"]}}<img ng-src="images/helmets/{{game['homeTeam']}}.gif"></a>
     - {{game["gameDate"]| date}} - {{game["gameTimeET"]}}</p>
