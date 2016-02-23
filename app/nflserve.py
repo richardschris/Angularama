@@ -7,7 +7,7 @@ CORS(app)
 
 @app.route('/schedule/week/<int:week_id>', methods=['GET'])
 def week_sched(week_id):
-    fi = open('nflschedulef.json', 'r')
+    # fi = open('nflschedulef.json', 'r')
 
     context = {}
     connection = sqlite3.connect('nflschedule.db')
@@ -40,7 +40,7 @@ def week_sched(week_id):
 
 @app.route('/schedule/team/<string:team_id>', methods=['GET'])
 def team_sched(team_id):
-    fi = open('nflschedulef.json', 'r')
+    # fi = open('nflschedulef.json', 'r')
 
     context = {}
 
